@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://gitlab.com/notaktik/tasks/issues"
   },
-  "homepage": "https://gitlab.com/notaktik/tasks#readme"
+  "homepage": "https://gitlab.com/notaktik/tasks#readme",
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
 }

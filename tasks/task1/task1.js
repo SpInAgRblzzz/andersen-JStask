@@ -7,27 +7,31 @@
 
  **/
 
-function namespace(str) {}
+function namespace(str) {
+	const result = {};
+
+	str.split(".").reduce((acc, key) => {
+		acc[key] = {};
+		return acc[key];
+	}, result);
+
+	return result;
+}
 
 /*------------------*/
 /*    Test cases    */
 /*------------------*/
 
-
 const testcases = [
-  {
-    args: [
-      'a.b.c.d.e'
-    ],
-    result: {a: {b: {c: {d: {e: {}}}}}}
-  },
-  {
-    args: [
-      'ab.cd.e'
-    ],
-    result: {ab: {cd: {e: {}}}}
-  }
+	{
+		args: ["a.b.c.d.e"],
+		result: { a: { b: { c: { d: { e: {} } } } } },
+	},
+	{
+		args: ["ab.cd.e"],
+		result: { ab: { cd: { e: {} } } },
+	},
 ];
 
-module.exports['testcases'] = testcases;
-module.exports['solution'] = namespace;
+module.exports["testcases"] = testcases;
+module.exports["solution"] = namespace;
