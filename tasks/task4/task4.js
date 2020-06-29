@@ -11,40 +11,36 @@
  * Ограничение по памяти O(1).
  */
 
-function isPalindrome(str) {}
-
+function isPalindrome(str) {
+	const trimmedStr = str
+		.match(/[a-zA-Zа-яА-Я]/g)
+		.join("")
+		.toUpperCase();
+	return trimmedStr === trimmedStr.split("").reverse().join("");
+}
 
 /*------------------*/
 /*    Test cases    */
 /*------------------*/
 
-
 const testcases = [
-  {
-    args: [
-      'Казак'
-    ],
-    result: true
-  },
-  {
-    args: [
-      'А роза упала на лапу Азора'
-    ],
-    result: true
-  },
-  {
-    args: [
-      'Do geese see God?'
-    ],
-    result: true
-  },
-  {
-    args: [
-      'Madam,  I’m Adam'
-    ],
-    result: true
-  },
+	{
+		args: ["Казак"],
+		result: true,
+	},
+	{
+		args: ["А роза упала на лапу Азора"],
+		result: true,
+	},
+	{
+		args: ["Do geese see God?"],
+		result: true,
+	},
+	{
+		args: ["Madam,  I’m Adam"],
+		result: true,
+	},
 ];
 
-module.exports['testcases'] = testcases;
-module.exports['solution'] = isPalindrome;
+module.exports["testcases"] = testcases;
+module.exports["solution"] = isPalindrome;
