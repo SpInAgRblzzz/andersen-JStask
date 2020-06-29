@@ -8,45 +8,36 @@
 
  **/
 
-function get(obj, path) {}
-
+function get(obj, path) {
+	return path.split(".").reduce((acc, key) => acc[key], obj);
+}
 
 /*------------------*/
 /*    Test cases    */
 /*------------------*/
 
-
 const obj = {
-  a: {
-    b: {
-      c: 'd'
-    },
-    e: 'f'
-  }
+	a: {
+		b: {
+			c: "d",
+		},
+		e: "f",
+	},
 };
 const testcases = [
-  {
-    args: [
-      obj,
-      'a.b.c'
-    ],
-    result: 'd'
-  },
-  {
-    args: [
-      obj,
-      'a.b'
-    ],
-    result: {c: 'd'}
-  },
-  {
-    args: [
-      obj,
-      'a.e'
-    ],
-    result: 'f'
-  },
+	{
+		args: [obj, "a.b.c"],
+		result: "d",
+	},
+	{
+		args: [obj, "a.b"],
+		result: { c: "d" },
+	},
+	{
+		args: [obj, "a.e"],
+		result: "f",
+	},
 ];
 
-module.exports['testcases'] = testcases;
-module.exports['solution'] = get;
+module.exports["testcases"] = testcases;
+module.exports["solution"] = get;
