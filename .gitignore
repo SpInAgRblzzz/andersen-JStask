@@ -1,0 +1,23 @@
+##############
+# Some IDE's #
+##############
+
+.classpath
+.project
+.settings
+.idea
+.metadata
+*.iml
+*.ipr
+
+##############################################
+# package-lock is not needed at this project #
+##############################################
+
+package-lock.json
+
+####################
+# node_modules too #
+####################
+
+/node_modules
