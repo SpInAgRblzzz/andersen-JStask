@@ -7,43 +7,42 @@
 
  **/
 
-function compose() {}
+function compose(...callbacks) {
+	return function (...args) {
+		return callbacks.reduceRight((acc, callback, index) => {
+			if (index === callbacks.length - 1) {
+				return callback(...args);
+			}
 
+			return callback(acc);
+		}, 0);
+	};
+}
 
 /*------------------*/
 /*       Mock       */
 /*------------------*/
 
-
 const sum = (x, y) => x + y;
-const times2 = x => x * 2;
-const square =  x => x * x;
-
+const times2 = (x) => x * 2;
+const square = (x) => x * x;
 
 /*------------------*/
 /*    Test cases    */
 /*------------------*/
 
-
 const testcases = [
-  {
-    args: [
-      square,
-      times2
-    ],
-    carriedArgs: [2],
-    result: 16
-  },
-  {
-    args: [
-      square,
-      times2,
-      sum
-    ],
-    carriedArgs: [3, 2],
-    result: 100
-  },
+	{
+		args: [square, times2],
+		carriedArgs: [2],
+		result: 16,
+	},
+	{
+		args: [square, times2, sum],
+		carriedArgs: [3, 2],
+		result: 100,
+	},
 ];
 
-module.exports['testcases'] = testcases;
-module.exports['solution'] = compose;
+module.exports["testcases"] = testcases;
+module.exports["solution"] = compose;
