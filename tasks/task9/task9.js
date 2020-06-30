@@ -11,8 +11,14 @@
  [1, 'any [complex] string', null, function() {}, 1, 2, 3, '4', 0, { a: 1 }]
  */
 
-function flatten(arr) {}
-
+function flatten(arr) {
+	return arr.reduce((acc, item, index) => {
+		if (Array.isArray(item)) {
+			return [...acc, ...flatten(item)];
+		}
+		return [...acc, item];
+	}, []);
+}
 
 /*------------------*/
 /*    Test cases    */
@@ -22,13 +28,32 @@ function flatten(arr) {}
 function func() {}
 
 const testcases = [
-  {
-    args: [
-      [1, 'any [complex] string', null, func, [1, 2, [3, '4'], 0], [], { a: 1 }]
-    ],
-    result: [1, 'any [complex] string', null, func, 1, 2, 3, '4', 0, { a: 1 }]
-  },
+	{
+		args: [
+			[
+				1,
+				"any [complex] string",
+				null,
+				func,
+				[1, 2, [3, "4"], 0],
+				[],
+				{ a: 1 },
+			],
+		],
+		result: [
+			1,
+			"any [complex] string",
+			null,
+			func,
+			1,
+			2,
+			3,
+			"4",
+			0,
+			{ a: 1 },
+		],
+	},
 ];
 
-module.exports['testcases'] = testcases;
-module.exports['solution'] = flatten;
+module.exports["testcases"] = testcases;
+module.exports["solution"] = flatten;
