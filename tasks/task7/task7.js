@@ -11,58 +11,47 @@
  transform([1, 2, 3, 4, 5], 4) => [5, 1, 2, 3, 4]
 **/
 
-function transform(list, offset) {}
+function transform(list, offset) {
+	const listCopy = list.slice();
 
+	const buffer = listCopy.splice(
+		offset >= 0
+			? offset % list.length
+			: (list.length + offset) % list.length
+	);
+	return [...buffer, ...listCopy];
+}
 
 /*------------------*/
 /*    Test cases    */
 /*------------------*/
 
-
 const testcases = [
-  {
-    args: [
-      [1, 2, 3, 4, 5],
-      0
-    ],
-    result: [1, 2, 3, 4, 5]
-  },
-  {
-    args: [
-      [1, 2, 3, 4, 5],
-      2
-    ],
-    result: [3, 4, 5, 1, 2]
-  },
-  {
-    args: [
-      [1, 2, 3, 4, 5],
-      3
-    ],
-    result: [4, 5, 1, 2, 3]
-  },
-  {
-    args: [
-      [1, 2, 3, 4, 5],
-      6
-    ],
-    result: [2, 3, 4, 5, 1]
-  },
-  {
-    args: [
-      [1, 2, 3, 4, 5],
-      -1
-    ],
-    result: [5, 1, 2, 3, 4]
-  },
-  {
-    args: [
-      [1, 2, 3, 4, 5],
-      4
-    ],
-    result: [5, 1, 2, 3, 4]
-  },
+	{
+		args: [[1, 2, 3, 4, 5], 0],
+		result: [1, 2, 3, 4, 5],
+	},
+	{
+		args: [[1, 2, 3, 4, 5], 2],
+		result: [3, 4, 5, 1, 2],
+	},
+	{
+		args: [[1, 2, 3, 4, 5], 3],
+		result: [4, 5, 1, 2, 3],
+	},
+	{
+		args: [[1, 2, 3, 4, 5], 6],
+		result: [2, 3, 4, 5, 1],
+	},
+	{
+		args: [[1, 2, 3, 4, 5], -1],
+		result: [5, 1, 2, 3, 4],
+	},
+	{
+		args: [[1, 2, 3, 4, 5], 4],
+		result: [5, 1, 2, 3, 4],
+	},
 ];
 
-module.exports['testcases'] = testcases;
-module.exports['solution'] = transform;
+module.exports["testcases"] = testcases;
+module.exports["solution"] = transform;
