@@ -5,7 +5,15 @@
  Если в итоге выполнить API call не удалось, бросить ошибку.
  **/
 
-function get() {}
+function get(callback, called = 1) {
+	return callback().catch(() => {
+		debugger;
+		if (called !== 5) {
+			return get(callback, called + 1);
+		}
 
+		return new Error(`i was created on ${called} tick`);
+	});
+}
 
-module.exports['solution'] = get;
+module.exports["solution"] = get;
